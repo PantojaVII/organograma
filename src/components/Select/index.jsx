@@ -1,12 +1,23 @@
 import "./Select.css"
 
-const Select = ({ list, label }) => {
+const Select = (props) => {
+
+    const aoDigitar = (event) => {
+        console.log(event.target.value);
+        props.aoAlterado(event.target.value)
+
+    }
+
     return (
         <div className="select-form">
-            <label>{label}</label>
-            <select name="" id="">
-                {list.map(item => {
-                    return <option key={item} value="">{item}</option>
+            <label>{props.label}</label>
+            <select
+                value={props.valor}
+
+                onChange={aoDigitar}
+            >
+                {props.list.map(item => {
+                    return <option key={item}>{item}</option>
                 }
                 )}
             </select>

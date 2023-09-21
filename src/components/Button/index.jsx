@@ -1,9 +1,10 @@
+import { Children } from "react"
 import "./Button.css"
 
-const Button = ({ text }) => {
+const Button = (props) => {
 
     return (
-        <button className="button">{text}</button>
+        <button className="button">{props.children}</button>
     )
 
 }
