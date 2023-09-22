@@ -29,10 +29,12 @@ const Form = (props) => {
             team
             //as chaves significam que vocês está enviando um objeto. para o props enviandoComoProps
         })// props enviada pelo inclusão do form
+
+        //abaixo está como zerar os campos depois de utilizalos
         setName('')
         setCargo('')
         setImagem('')
-        setTeam('')
+ 
  
     }
 
