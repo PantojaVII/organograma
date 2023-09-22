@@ -14,8 +14,8 @@ const Select = (props) => {
 
                 onChange={aoDigitar}
             >
-                {props.list.map(item => {
-                    return <option key={item}>{item}</option>
+                {props.Teams.map(team => {
+                    return <option key={team}>{team}</option>
                 }
                 )}
             </select>

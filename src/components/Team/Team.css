@@ -1,0 +1,22 @@
+.team {
+    text-align: center;
+    justify-content: space-around;
+    padding: 32px;
+    background-color: #d9f7e9;
+    margin: 8px 0;
+}
+
+.team h3 {
+    display: inline-block;
+    font-size: 32px;
+    border-bottom: 4px solid #57c278;
+    padding-bottom: 8px;
+
+
+}
+.team .card-colaborators{
+    display: flex;
+    justify-content: space-around;
+
+    flex-wrap: wrap;    
+}

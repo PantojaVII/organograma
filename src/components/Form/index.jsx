@@ -7,20 +7,15 @@ import Select from '../Select';
 import './Form.css'
 
 const Form = (props) => {
-    const teams = [
-        'Programação',
-        'Front-end',
-        'Data Science',
-        'DevOps',
-    ]
-
+    
+ 
     const [name, setName] = useState('')
 
     const [cargo, setCargo] = useState('')
 
     const [imagem, setImagem] = useState('')
 
-    const [time, setTime] = useState('')
+    const [team, setTeam] = useState('')
 
 
 
@@ -31,8 +26,14 @@ const Form = (props) => {
             name,
             cargo,
             imagem,
-            time
+            team
+            //as chaves significam que vocês está enviando um objeto. para o props enviandoComoProps
         })// props enviada pelo inclusão do form
+        setName('')
+        setCargo('')
+        setImagem('')
+        setTeam('')
+ 
     }
 
     return (
@@ -63,9 +64,9 @@ const Form = (props) => {
                 <Select
                     required={true}
                     label='Qual o seu time'
-                    list={teams}
-                    valor={time}
-                    aoAlterado={valor => setTime(valor)}
+                    Teams={props.Teams}
+                    valor={team}
+                    aoAlterado={team => setTeam(team)}
                 >
                 </Select>
                 <Button> Criar card </Button>
