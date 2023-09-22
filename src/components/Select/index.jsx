@@ -3,9 +3,7 @@ import "./Select.css"
 const Select = (props) => {
 
     const aoDigitar = (event) => {
-        console.log(event.target.value);
         props.aoAlterado(event.target.value)
-
     }
 
     return (

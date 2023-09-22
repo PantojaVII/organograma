@@ -6,7 +6,7 @@ import Select from '../Select';
 
 import './Form.css'
 
-const Form = () => {
+const Form = (props) => {
     const teams = [
         'Programação',
         'Front-end',
@@ -26,8 +26,13 @@ const Form = () => {
 
 
     const save = (event) => {
-        event.preventDefault()
-        console.log(name, cargo, imagem, time);
+        event.preventDefault()//para não recarregar a página
+        props.enviandoComoProps({
+            name,
+            cargo,
+            imagem,
+            time
+        })// props enviada pelo inclusão do form
     }
 
     return (
