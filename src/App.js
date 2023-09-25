@@ -5,19 +5,17 @@ import Team from './components/Team';
 
 function App() {
 
-  const Teams = [
+  const [Teams, setTeams] = useState([
     {
       name: 'Programação',
-      colorPrimary: '#d9f7e9',
-      colorSecundary: '#57c278',
+      color: '#57c278',
     },
     {
       name: 'Front-end',
-      colorPrimary: '#e8f8ff',
-      colorSecundary: '#8fcffa',
+      color: '#8fcffa',
     },
 
-  ]
+  ])
 
   /* Esta linha utiliza o hook useState para criar um estado chamado colaboradores. O estado inicial [] é um array vazio. colaboradores é uma variável que conterá o valor atual desse estado, e setColaboradores é uma função que permite atualizar esse estado. */
   const [colaboradores, setColaboradores] = useState([])
@@ -29,6 +27,21 @@ function App() {
 
   }
 
+  function deleteColaborator() {
+    console.log('delentando colaborador');
+  }
+
+  function upgradeColor(color, teamName) { 
+    setTeams(Teams.map(
+      Team => {
+        if (Team.name === teamName) {
+          Team.color = color;
+        }
+        return Team
+      }
+    ))
+  }
+
 
   return (
     <div className='app'>
@@ -38,13 +51,14 @@ function App() {
         enviandoComoProps={teste => aoNovoColaboradorCadastrado(teste)}
       />
 
-      {Teams.map(team => {
+      {Teams.map((team, indice) => {
         return (
           <Team
-            colorPrimary={team.colorPrimary}
-            colorSecundary={team.colorSecundary}
-            key={team.name}
+            upgradeColor={upgradeColor}
+      color={team.color}
+            key={indice}
             nameTeam={team.name}
+            aoDeletar={deleteColaborator}
             colaborators={colaboradores.filter(colaborator => (colaborator.team === team.name))}
           >
           </Team>

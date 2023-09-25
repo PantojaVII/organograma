@@ -4,6 +4,7 @@
     padding: 32px;
     background-color: #d9f7e9;
     margin: 8px 0;
+    position: relative;
 }
 
 .team h3 {
@@ -14,9 +15,17 @@
 
 
 }
-.team .card-colaborators{
+
+.team .card-colaborators {
     display: flex;
     justify-content: space-around;
 
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
+}
+
+.team .input-color {
+    position: absolute;
+    top: 20px;
+    width: 35px;
+    right: 50px;
 }
