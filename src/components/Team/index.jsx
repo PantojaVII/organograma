@@ -4,7 +4,7 @@ import "./Team.css"
 
 const Team = (props) => {
     //um objeto
-    console.log(props.upgradeColor);
+
     return (
         /* props.colaborators.length > 0: Esta parte da expressão verifica se o tamanho (número de elementos) do array props.colaborators é maior que zero. Se o tamanho for maior que zero, isso significa que há pelo menos um colaborador, e a expressão retornará true. */
         props.colaborators.length > 0 &&
@@ -16,7 +16,7 @@ const Team = (props) => {
         }} >
             <input
                 value={props.color}
-                onChange={event => props.upgradeColor(event.target.value, props.nameTeam)}
+                onChange={event => props.upgradeColor(event.target.value, props.id)}
                 // o onchange é o que usa para acessar o input, nesse caso ele recebe um event e também a função de alguma coisa
 
                 //pegamos o valor do input passado
@@ -27,17 +27,19 @@ const Team = (props) => {
                 {props.nameTeam}
             </h3>
             <div className="card-colaborators">
-                {props.colaborators.map((colaborador, indice) => {
-
+                {props.colaborators.map((colaborator) => {
+                    /* indice é um parâmetro que você pode nomear como desejar em uma função de mapeamento (map) que está sendo usada para iterar sobre um array. Nesse caso, parece que você está usando a função map para iterar sobre o array props.colaborators e está nomeando o parâmetro de índice como indice. No entanto, você poderia nomeá-lo de qualquer outra forma, como i, idx, ou até mesmo omiti-lo, se você não precisar do índice em seu código. */
                     return (
                         <Card
                             backgroundColor={props.color}
-                            key={colaborador.name}
-                            name={colaborador.name}
-                            cargo={colaborador.cargo}
-                            imagem={colaborador.imagem}
-                            team={colaborador.team}
+                            id={colaborator.id}
+                            name={colaborator.name}
+                            cargo={colaborator.cargo}
+                            imagem={colaborator.imagem}
+                            team={colaborator.team}
+                            favorite={colaborator.favorite}
                             aoDeletar={props.aoDeletar}
+                            changeFavorite={props.functionFavorite}
                         ></Card>)
                 })}
             </div>

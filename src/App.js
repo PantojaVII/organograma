@@ -2,15 +2,18 @@ import { useState } from 'react';
 import Banner from './components/Banner';
 import Form from './components/Form';
 import Team from './components/Team';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
   const [Teams, setTeams] = useState([
     {
+      id: uuidv4(),
       name: 'Programação',
       color: '#57c278',
     },
     {
+      id: uuidv4(),
       name: 'Front-end',
       color: '#8fcffa',
     },
@@ -21,25 +24,46 @@ function App() {
   const [colaboradores, setColaboradores] = useState([])
 
   const aoNovoColaboradorCadastrado = (colaborador) => {
-    console.log(colaborador)
+
     /*  Isso atualiza o estado colaboradores. Ele cria uma nova matriz (um novo array) que é uma cópia do array anterior colaboradores e adiciona o novo colaborador ao final da matriz. Isso é feito usando o operador spread [...colaboradores] para criar uma cópia do array existente e, em seguida, acrescentando colaborador ao final. */
     setColaboradores([...colaboradores, colaborador])
 
   }
+  const updateTeams = (Team) => {
 
-  function deleteColaborator() {
-    console.log('delentando colaborador');
+    setTeams([...Teams, Team])
+
   }
 
-  function upgradeColor(color, teamName) { 
+  function deleteColaborator(id) {
+    console.log(id);
+    console.log(colaboradores);
+    setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id))
+  }
+
+  function upgradeColor(color, id) {
     setTeams(Teams.map(
       Team => {
-        if (Team.name === teamName) {
+        if (Team.id === id) {
           Team.color = color;
         }
         return Team
       }
     ))
+  }
+
+  function changeFavorite(idColaborator) {
+    if (idColaborator) {
+      setColaboradores(colaboradores.map(colaborator => {
+        if (colaborator.id === idColaborator)
+          colaborator.favorite = !colaborator.favorite
+        return colaborator
+      }
+      )
+      )
+    } else {
+      return false
+    }
   }
 
 
@@ -49,17 +73,20 @@ function App() {
       <Form
         Teams={Teams.map(Teams => Teams.name)}
         enviandoComoProps={teste => aoNovoColaboradorCadastrado(teste)}
+        updateTeam={newTeam => updateTeams(newTeam)}
+
       />
 
-      {Teams.map((team, indice) => {
+      {Teams.map((team) => {
         return (
           <Team
             upgradeColor={upgradeColor}
-      color={team.color}
-            key={indice}
+            color={team.color}
+            id={team.id}
             nameTeam={team.name}
             aoDeletar={deleteColaborator}
             colaborators={colaboradores.filter(colaborator => (colaborator.team === team.name))}
+            functionFavorite={changeFavorite}
           >
           </Team>
         )
